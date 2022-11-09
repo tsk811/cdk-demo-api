@@ -1,0 +1,30 @@
+{
+    "fargate": {
+        "task": {
+            "memoryLimit": 512,
+            "cpu": 256,
+            "imageTag": "latest",
+            "containerPort": 2000
+        },
+        "alb": {
+            "listenerPort": 80,
+            "targetPort": 2000,
+            "healthyThreshold": 3,
+            "unhealthyThreshold": 4,
+            "healthcheckInterval": 20,
+            "healthcheckPath": "/path",
+            "successCode": "200"
+        },
+        "service": {
+            "name": "DemoAPIService",
+            "desiredCount": 1,
+            "healthCheckGracePeriod": 30,
+            "minHealthPercentage": 50,
+            "cpuUtilizationTarget": 70,
+            "memoryUtilizationLimit": 60,
+            "scaleInCoolDown": 500,
+            "scaleOutCoolDown": 200
+        }
+    },
+    "environment": "Prod"
+}

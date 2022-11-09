@@ -1,0 +1,44 @@
+{
+    "artifactBucket": "/configs/artifactBucket",
+    "appName": "DemoAPI",
+    "vpcInfo": {
+        "vpcId": "/configs/vpc",
+        "availabilityZones": "/configs/availabilityZones",
+        "publicSubnets": "/configs/publicSubnets",
+        "privateSubnets": "/configs/privateSubnets",
+        "publicSubnetA": "/configs/publicSubnetA",
+        "publicSubnetB": "/configs/publicSubnetB",
+        "publicSubnetC": "/configs/publicSubnetC",
+        "privateSubnetA": "/configs/privateSubnetA",
+        "privateSubnetB": "/configs/privateSubnetB",
+        "privateSubnetC": "/configs/privateSubnetC"
+    },
+    "account": {
+        "nonProd": "799771142381",
+        "prod": "734082183364",
+        "region": "us-east-1"
+    },
+    "cluster": "/configs/ecsCluster",
+    "ecr": "/configs/ecrRepo",
+    "fargateService": {
+        "name": "DemoAPIService",
+        "imageTag": "latest",
+        "container": "DemoAPIContainer"
+    },
+    "codeRepo": {
+        "name": "cdk-demo-api",
+        "defaultBranch": "main"
+    },
+    "route53": {
+        "zoneId": "/configs/hostedZoneId",
+        "zoneName": "/configs/hostedZoneName",
+        "recordName": "demoapi"
+    },
+    "kms": {
+        "arn": "/configs/kms_key"
+    },
+    "roles": {
+        "deployRole": "/configs/ProdDeploymentRole",
+        "crossAccountRole": "/configs/CrossAccountRole"
+    }
+}
