@@ -12,7 +12,7 @@
             "healthyThreshold": 3,
             "unhealthyThreshold": 4,
             "healthcheckInterval": 20,
-            "healthcheckPath": "/path",
+            "healthcheckPath": "/",
             "successCode": "200"
         },
         "service": {

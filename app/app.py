@@ -6,6 +6,10 @@ import uuid
 
 app = Flask(__name__)
 
+@app.route("/", methods=["GET"])
+def health_check():
+    return {"message": "application reachable"}, 200
+
 @app.route('/upload', methods=['POST'])
 def user():
     if request.files.get('file'):
