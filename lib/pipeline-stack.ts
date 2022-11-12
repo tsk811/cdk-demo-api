@@ -232,6 +232,7 @@ export class PipelineStack extends Stack {
                 imageTag: "#{DemoAPI.SHA}",
                 ...prodApplicationStack.lambdaCode.assign(lambdaBuildOut.s3Location)
               },
+              extraInputs: [lambdaBuildOut],
               adminPermissions: true,
               role: crossAccountRole,
               deploymentRole: prodDeployRole
