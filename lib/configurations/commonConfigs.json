@@ -40,5 +40,9 @@
     "roles": {
         "deployRole": "/configs/ProdDeploymentRole",
         "crossAccountRole": "/configs/CrossAccountRole"
+    },
+    "secretsManager": {
+        "name": "/secrets/github_token",
+        "key": "token"
     }
 }

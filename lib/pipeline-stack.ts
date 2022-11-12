@@ -1,7 +1,7 @@
 import * as codepipeline from 'aws-cdk-lib/aws-codepipeline'
 import * as codeCommit from 'aws-cdk-lib/aws-codecommit'
 import * as codepipeline_actions from 'aws-cdk-lib/aws-codepipeline-actions'
-import { App, Stack, StackProps } from 'aws-cdk-lib';
+import { App, Stack, StackProps, SecretValue } from 'aws-cdk-lib';
 import * as ssm from 'aws-cdk-lib/aws-ssm';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as iam from 'aws-cdk-lib/aws-iam';
@@ -125,12 +125,16 @@ export class PipelineStack extends Stack {
         {
           stageName: "Source",
           actions: [
-            new codepipeline_actions.CodeCommitSourceAction(
+            new codepipeline_actions.GitHubSourceAction(
               {
-                actionName: "Code_Commit_Pull",
+                actionName: "Github_Pull",
+                repo: commonConfigs.codeRepo.name,
+                owner: "tsk811",
+                oauthToken: SecretValue.secretsManager(commonConfigs.secretsManager.name, {
+                  jsonField: commonConfigs.secretsManager.key
+                }),
                 output: sourceOut,
-                repository: codeRepository,
-                branch: commonConfigs.codeRepo.defaultBranch,
+                branch: commonConfigs.codeRepo.defaultBranch
               })
           ]
 

@@ -13,6 +13,7 @@ export interface CommonConfigs {
     route53: Route53
     kms: KMS
     roles: Roles
+    secretsManager: SecretsManager
 }
 
 export interface Account {
@@ -98,4 +99,9 @@ export interface Fargate {
     task: Task
     alb: ALB
     service: Service
+}
+
+export interface SecretsManager {
+    name: string
+    key: string
 }

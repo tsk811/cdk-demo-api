@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/file_upload.ts",
+  "app": "npx ts-node --prefer-ts-exts bin/demo_api.ts",
   "watch": {
     "include": [
       "**"
