@@ -7,6 +7,12 @@ Customize this stack by adding or removing the constructs which may or may not b
 
 -----
 
+## Description
+
+This project deploys a simple flask application on AWS ECS with a Load Balancer. The application accepts POST request with a file, uploads it to the S3 bucket and returns the object key in the response. Refer the sample postman collection [here](./docs/ECSDemoAPI.postman_collection.json).
+
+-----
+
 ## Stacks
 
 * Demo API stack
@@ -39,7 +45,7 @@ Customize this stack by adding or removing the constructs which may or may not b
 -----
 
 
-## Description/How to
+## How to
 
 1. Deploy "DemoPipelineStack" from local for the first time(one time activity).
 2. Pipeline will checkout the code from Github repo for every new push to the default branch(main).
@@ -50,6 +56,8 @@ Customize this stack by adding or removing the constructs which may or may not b
 7. Application will be then deployed to Prod account after approval.
 
 Open the Code Pipeline to visualize the flow after the pipeline deployment for better understanding.
+
+![CodePipeline](./docs/CodePipeline.png)
 
 -----
 

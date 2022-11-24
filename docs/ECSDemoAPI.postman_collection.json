@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "f89dc8a8-a4b4-413d-8833-ed8e39d8d33a",
+		"name": "ECSDemoAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24144185"
+	},
+	"item": [
+		{
+			"name": "UploadFile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{ELB}}/upload",
+					"protocol": "http",
+					"host": [
+						"{{ELB}}"
+					],
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ELB",
+			"value": "ADD_YOUR_ELB_DNS_VALUE_HERE",
+			"type": "string"
+		}
+	]
+}
