@@ -9,7 +9,9 @@ Customize this stack by adding or removing the constructs which may or may not b
 
 ## Description
 
-    This project deploys a simple flask application on AWS ECS with a Load Balancer. The application accepts POST request with a file, uploads it to the S3 bucket and returns the object key in the response.
+This project deploys a simple flask application on AWS ECS with a Load Balancer. The application accepts POST request with a file, uploads it to the S3 bucket and returns the object key in the response. Refer the sample postman collection [here](./docs/ECSDemoAPI.postman_collection.json).
+
+-----
 
 ## Stacks
 

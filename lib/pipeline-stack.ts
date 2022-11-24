@@ -197,7 +197,7 @@ export class PipelineStack extends Stack {
           stageName: "Push_Image",
           actions: [
             new codepipeline_actions.CodeBuildAction({
-              actionName: "Image_Push_To_Prod",
+              actionName: "Push_Image_To_Prod",
               input: sourceOut,
               project: dockerPushProd,
               environmentVariables: {
