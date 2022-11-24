@@ -57,6 +57,8 @@ This project deploys a simple flask application on AWS ECS with a Load Balancer.
 
 Open the Code Pipeline to visualize the flow after the pipeline deployment for better understanding.
 
+![CodePipeline](./docs/CodePipeline.png)
+
 -----
 
 ## Resources

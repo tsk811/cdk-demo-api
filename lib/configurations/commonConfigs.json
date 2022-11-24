@@ -27,12 +27,12 @@
     },
     "codeRepo": {
         "name": "cdk-demo-api",
-        "defaultBranch": "cleanup"
+        "defaultBranch": "main"
     },
     "route53": {
         "zoneId": "/configs/hostedZoneId",
         "zoneName": "/configs/hostedZoneName",
-        "recordName": "demoapi"
+        "recordName": "ecsdemoapi"
     },
     "kms": {
         "arn": "/configs/kms_key"
