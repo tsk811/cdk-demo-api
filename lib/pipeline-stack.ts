@@ -87,7 +87,6 @@ export class PipelineStack extends Stack {
 
     //CodeBuild Projects for build
     const cdkBuild = util.cdkBuildProject(this, `${stackName}CDKBuild`, cdkBuildOut.artifactName, vpc)
-
     artifactBucket.grantReadWrite(cdkBuild)
 
     const dockerBuild = util.dockerBuildProject(this, `${stackName}DockerBuild`, imageDefOut.artifactName, vpc,
@@ -99,8 +98,6 @@ export class PipelineStack extends Stack {
     artifactBucket.grantReadWrite(dockerBuild)
     dockerBuild.role?.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonEC2ContainerRegistryPowerUser"))
     dockerPushProd.role?.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName("AmazonEC2ContainerRegistryPowerUser"))
-
-    artifactBucket.grantReadWrite(cdkBuild)
 
     //The below project can be used to force a new deployment in ECS if needed. Not used currently.
     /*
