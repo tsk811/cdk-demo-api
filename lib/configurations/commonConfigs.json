@@ -27,7 +27,7 @@
     },
     "codeRepo": {
         "name": "cdk-demo-api",
-        "defaultBranch": "main"
+        "defaultBranch": "cleanup"
     },
     "route53": {
         "zoneId": "/configs/hostedZoneId",

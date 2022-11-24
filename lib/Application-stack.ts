@@ -82,7 +82,8 @@ export class ApplicationStack extends Stack {
     //S3 bucket to store files from ecs.
     const demoAPIs3Bucket = new s3.Bucket(this, `${this.stackName}demoAPIBucket`, {
       bucketName: `demo-api-bucket-${props.env?.account}`,
-      removalPolicy: RemovalPolicy.RETAIN,
+      removalPolicy: RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       publicReadAccess: false
     })
