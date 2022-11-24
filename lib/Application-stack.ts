@@ -3,7 +3,6 @@ import * as ecs from 'aws-cdk-lib/aws-ecs';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as ecr from 'aws-cdk-lib/aws-ecr';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
-import * as lambda from 'aws-cdk-lib/aws-lambda'
 import * as elb from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import * as ssm from 'aws-cdk-lib/aws-ssm';
 import * as r53 from 'aws-cdk-lib/aws-route53';
@@ -20,7 +19,6 @@ export interface ApplicationStackProps extends StackProps {
 
 export class ApplicationStack extends Stack {
 
-  public readonly lambdaCode: lambda.CfnParametersCode;
 
   constructor(scope: Construct, id: string, props: ApplicationStackProps) {
     super(scope, id, props);
@@ -32,7 +30,6 @@ export class ApplicationStack extends Stack {
       type: 'String',
       description: 'Image tag for deployment.',
     });
-    this.lambdaCode = lambda.Code.fromCfnParameters();
 
     function getValueFromParameterStore(name: string, stack: Construct) {
       return (ssm.StringParameter.fromStringParameterAttributes(stack, `${name}Parameter`, {
@@ -87,17 +84,6 @@ export class ApplicationStack extends Stack {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       publicReadAccess: false
     })
-
-    //Sample lambda function
-    const lambdaFunction = new lambda.Function(this, `${stackName}Lambda`, {
-      runtime: lambda.Runtime.PYTHON_3_9,
-      code: this.lambdaCode,
-      handler: "app.handler",
-      timeout: Duration.seconds(30),
-      memorySize: 512
-
-    })
-
 
     const fargateTaskDefinition = new ecs.FargateTaskDefinition(this, `${stackName}${appConfigs.fargate.service.name}TaskDefinition`, {
       cpu: appConfigs.fargate.task.cpu,

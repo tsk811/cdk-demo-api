@@ -82,15 +82,11 @@ export class PipelineStack extends Stack {
     //Artifacts
     const sourceOut = new codepipeline.Artifact("sourceOut")
     const cdkBuildOut = new codepipeline.Artifact("cdkBuildOut")
-    const lambdaBuildOut = new codepipeline.Artifact("lambdaBuildOut")
     const imageDefOut = new codepipeline.Artifact("imageDefOut")
 
 
     //CodeBuild Projects for build
     const cdkBuild = util.cdkBuildProject(this, `${stackName}CDKBuild`, cdkBuildOut.artifactName, vpc)
-
-    //CodeBuild Projects for build
-    const lambdaBuild = util.lambdaBuildProject(this, `${stackName}LambdaBuild`, lambdaBuildOut.artifactName, vpc)
 
     artifactBucket.grantReadWrite(cdkBuild)
 
@@ -148,13 +144,6 @@ export class PipelineStack extends Stack {
               project: cdkBuild,
               outputs: [cdkBuildOut]
 
-            }),
-            new codepipeline_actions.CodeBuildAction({
-              actionName: "Lambda_Build",
-              input: sourceOut,
-              project: lambdaBuild,
-              outputs: [lambdaBuildOut]
-
             })
           ]
         },
@@ -190,10 +179,8 @@ export class PipelineStack extends Stack {
               stackName: nonProdApplicationStack.stackName,
               adminPermissions: true,
               parameterOverrides: {
-                imageTag: "#{DemoAPI.SHA}",
-                ...nonProdApplicationStack.lambdaCode.assign(lambdaBuildOut.s3Location)
-              },
-              extraInputs: [lambdaBuildOut]
+                imageTag: "#{DemoAPI.SHA}"
+              }
             })
           ]
         },
@@ -229,10 +216,8 @@ export class PipelineStack extends Stack {
               templatePath: cdkBuildOut.atPath(`${prodApplicationStack.stackName}.template.json`),
               stackName: prodApplicationStack.stackName,
               parameterOverrides: {
-                imageTag: "#{DemoAPI.SHA}",
-                ...prodApplicationStack.lambdaCode.assign(lambdaBuildOut.s3Location)
+                imageTag: "#{DemoAPI.SHA}"
               },
-              extraInputs: [lambdaBuildOut],
               adminPermissions: true,
               role: crossAccountRole,
               deploymentRole: prodDeployRole

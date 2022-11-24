@@ -84,23 +84,6 @@ export function cdkBuildProject(stack: any, name: string, artifact: any, vpc: IV
         false)
 }
 
-export function lambdaBuildProject(stack: any, name: string, artifact: any, vpc: IVpc) {
-    return buildProject(stack, name,
-        {
-            build: { commands: ['make pip.install'] }
-        },
-        vpc,
-        {
-            // No environment variables
-        },
-        {
-            'base-directory': 'lambda',
-            "files": ['**/*'],
-            "name": artifact
-        },
-        false)
-}
-
 export function dockerBuildProject(stack: any, name: string, artifact: any, vpc: IVpc, commonConfigs: CommonConfigs, uri: string) {
     return buildProject(stack, name,
         {
